@@ -1,0 +1,19 @@
+
+        root /var/www/veiga.dynu.net/pdov2/public;
+
+        # Add index.php to the list if you are using PHP
+        index index.php index.html index.htm index.nginx-debian.html;
+
+        server_name veiga2.dynu.net www.veiga2.dynu.net;
+
+        location / {
+                try_files $uri $uri/ @modx;
+        }
+
+        location @modx {
+                # hay que añadir los argumentos adicionales que se le pasen.
+                rewrite ^/(.+)$ /index.php?c=$1&$args;
+
+        }
+
+
